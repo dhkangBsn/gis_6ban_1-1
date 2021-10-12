@@ -28,7 +28,7 @@
     <script>
         let position_list = new Array()
     </script>
-    <div class="container my-4">
+    <div class="container">
 
         {% for item in object_list %}
 
@@ -56,7 +56,7 @@
 
     <div class="text-center my-3">
         <a href="{% url 'articleapp:create' %}"
-           class="btn btn-outline-dark rounded-pill px-5">
+           class="btn btn-outline-dark rounded-pill px-5 lower-button-color">
             빛고을 생성
         </a>
     </div>

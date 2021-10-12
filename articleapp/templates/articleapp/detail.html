@@ -59,18 +59,30 @@
             <h3>{{ target_article.writer.profile.nickname }}</h3>
             <p>{{ target_article.created_at }}</p>
             <div>
-                <div>
-                    {# joy, sadness, fear, upset, anger, hurt #}
-                    {#  # 기쁨, 슬픔, 불안, 당항, 분노, 상처#}
-                    <p style="margin: 0.2rem; display: inline;">기쁨 : {{ target_article.joy }}</p>
-                    <p style="margin: 0.2rem; display: inline;">슬픔 : {{ target_article.sadness }}</p>
-                    <p style="margin: 0.2rem; display: inline;">불안 : {{ target_article.fear }}</p>
-                </div>
-                <div>
-                    <p style="margin: 0.2rem; display: inline;">놀람 : {{ target_article.surprise }}</p>
-                    <p style="margin: 0.2rem; display: inline;">분노 : {{ target_article.anger }}</p>
-                    <p style="margin: 0.2rem; display: inline;">사랑 : {{ target_article.love }}</p>
-                </div>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        기쁨지수 : {{  joy }}
+                </a>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        슬픔지수 : {{  sadness }}
+                </a>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        불안지수 : {{ fear }}
+                </a>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        놀람지수 : {{  surprise }}
+                </a>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        분노지수 : {{  anger }}
+                </a>
+                <a href=#
+                       class="btn btn-outline-dark rounded-pill px-5 emotion_font_color">
+                        사랑지수 : {{  love }}
+                </a>
             </div>
         </div>
 
@@ -155,7 +167,7 @@
                 {% if comment.writer == user %}
                     <div style="text-align: right">
                         <a href="{% url 'commentapp:delete' pk=comment.pk %}"
-                        class="btn btn-danger rounded-pill px-5">댓글 삭제</a>
+                        class="btn btn-danger rounded-pill px-5 lower-button-color">댓글 삭제</a>
                     </div>
                 {% endif %}
                 </div>

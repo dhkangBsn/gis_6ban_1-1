@@ -1,15 +1,28 @@
+* {
+    font-size: 1.1rem;
+    font-family: 'BMJUA', cursive;
+    color: floralwhite;
+}
+
 body {
-    background-image: url(background_img_mountain.png);
+    background-image: url(background_img_icon.jpg);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
+
+}
+
+.emotion_font_color{
+    color: #f8f5f3;
+    background: #9E9E9E;
 }
 
 .div_border {
     text-align: center;
-    background:rgba(245, 245, 245, 0.8);
+    background:rgba(0, 0, 0, 0.65);
     transform: scale(0.90, 0.95);
     border-bottom-width: 10px;
-    border-color: #0F1214;
+    border-color: #FFFFFF;
     border-radius: 5px;
 }
 
@@ -19,12 +32,14 @@ body {
 }
 
 .title_font {
+    font-family: 'Gugi', cursive;
     display: inline-block;
     opacity: 1;
     position: relative;
     font-size: 4rem;
-    right: 20%;
-    top: 1.5rem
+    text-align: center;
+    top: 1rem;
+    color: #f8f5f3;
 }
 
 .pragmatic_header_logo {
@@ -58,6 +73,7 @@ body {
     width: 12rem;
     border-radius: 20rem;
     object-fit: cover;
+    align-content: center;
 }
 
 .NNS_B {
@@ -116,10 +132,16 @@ a:hover {
 .hover_white {
     position: relative;
     left: 27%;
-    bottom: 1rem;
+    top: 1rem;
     margin-right:1rem;
-    font-size: 200%;
+    font-size: 180%;
     font-family: 'East Sea Dokdo', cursive;
+    color : #f8f5f3;
+}
+
+.lower-button-color{
+    color : #f8f5f3;
+    background: gray;
 }
 
 .hover_white:hover {
@@ -127,7 +149,11 @@ a:hover {
 }
 
 .header-font {
+    margin-top: 1.2rem;
     font-family: 'Nanum Pen Script', cursive;
     text-align: center;
     font-size: 150%;
+}
+.header-font a{
+    color:#f8f5f3;
 }

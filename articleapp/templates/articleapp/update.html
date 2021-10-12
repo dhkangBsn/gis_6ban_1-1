@@ -5,6 +5,7 @@
 {% load static %}
 
 {% block content %}
+    <div id="map" style="width:80%;height:100%;"></div>
     <style>
         .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
         .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -48,9 +49,10 @@
     <link rel="stylesheet" href="{% static 'beagle.css' %}">
 
     <div class="map_wrap">
-        <div id="map" style="width:50%;height:100%;position:relative;overflow:hidden;"></div>
+
 
         <div id="menu_wrap" class="bg_white">
+
             <div class="option">
                 <div>
                     <form onsubmit="searchPlaces(); return false;">
@@ -81,7 +83,7 @@
                 {% bootstrap_form form %}
                 <div class="m-5">
                     <input type="submit"
-                            class="btn btn-dark rounded-pill px-5">
+                            class="btn btn-dark rounded-pill px-5 lower-button-color">
                 </div>
             </form>
         </div>
@@ -90,7 +92,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a0506c93dc9967fe1cbf31894fab580&libraries=services"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a0506c93dc9967fe1cbf31894fab580&libraries=services"></script>
     <script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng({{ target_article.lat }}, {{ target_article.lon }}), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨

@@ -109,6 +109,18 @@ class ArticleDetailView(DetailView, FormMixin):
     template_name = 'articleapp/detail.html'
     form_class = CommentCreationForm
 
+    def get_context_data(self, **kwargs):
+        obj = self.object
+        joy = round(obj.joy, 2)
+        sadness = round(obj.sadness, 2)
+        fear = round(obj.fear, 2)
+        surprise = round(obj.surprise, 2)
+        anger = round(obj.anger, 2)
+        love = round(obj.love, 2)
+
+        return super().get_context_data(joy = joy, sadness=sadness, fear=fear, surprise=surprise,anger=anger,
+                                        love=love,
+                                        **kwargs)
 
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
