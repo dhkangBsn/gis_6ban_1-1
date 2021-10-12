@@ -237,7 +237,7 @@ import re
 #
 #         obj.save()
 #         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
-from manage import predict
+from gis_6ban_1.wsgi import predict
 
 
 @method_decorator(login_required, 'get')
