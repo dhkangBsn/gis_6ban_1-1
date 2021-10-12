@@ -105,6 +105,18 @@ p{
     /*box-shadow: 0 0 1rem grey;*/
 }
 
+.info > h5 {
+    color:black;
+}
+.info > span{
+    color:black;
+}
+select.form-control{
+    color:#6D757D;
+}
+select.form-control > option{
+    color:#6D757D;
+}
 .article_content {
     text-align: left;
     font-size: 1.1rem;
