@@ -57,20 +57,8 @@
              </div>
             {# Like App : 좋아요 기능 이식 END #}
             <h3>{{ target_article.writer.profile.nickname }}</h3>
-            <p>{{ target_article.created_at }}</p>
-            <div>
-                <p>비공개여부: {{ target_article.is_private }}</p>
-            </div>
-                <div>
-                    <p style="margin: 0.2rem; display: inline;">기쁨 : {{ target_article.joy }}</p>
-                    <p style="margin: 0.2rem; display: inline;">슬픔 : {{ target_article.sadness }}</p>
-                    <p style="margin: 0.2rem; display: inline;">불안 : {{ target_article.fear }}</p>
-                </div>
-                <div>
-                    <p style="margin: 0.2rem; display: inline;">당황 : {{ target_article.surprise }}</p>
-                    <p style="margin: 0.2rem; display: inline;">분노 : {{ target_article.anger }}</p>
-                    <p style="margin: 0.2rem; display: inline;">상처 : {{ target_article.love }}</p>
-                </div>
+            <p style="color:#f8f5f3;">{{ target_article.created_at }}</p>
+
         </div>
         <h3 class="NNS_B">{{ target_article.place }}</h3>
 
