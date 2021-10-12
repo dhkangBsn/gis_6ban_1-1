@@ -45,7 +45,7 @@ class Article(models.Model):
     joy = models.FloatField(null=True)
     sadness = models.FloatField(null=True)
     fear = models.FloatField(null=True)
-    surpise = models.FloatField(null=True)
+    surprise = models.FloatField(null=True)
     anger = models.FloatField(null=True)
     love = models.FloatField(null=True)
 

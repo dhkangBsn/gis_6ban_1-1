@@ -209,7 +209,8 @@ class ArticleCreateView(CreateView):
         np.set_printoptions(precision=3)
         np.set_printoptions(suppress=True)
         result = list(map(float, np.round(y_hat.detach().numpy(), 5) * 100))
-        result_dict = {'joy':result[0], 'sadness':result[1], 'fear':result[2], 'upset':result[3], 'anger':result[4], 'hurt':result[5]}
+        result_dict = {'joy': result[2], 'sadness': result[4], 'fear': result[1], 'surprise': result[5],
+                       'anger': result[0], 'love': result[3]}
         print(result_dict)
         print(type(result_dict['sadness']))
 
@@ -228,9 +229,9 @@ class ArticleCreateView(CreateView):
         obj.joy = result_dict['joy']
         obj.sadness = result_dict['sadness']
         obj.fear = result_dict['fear']
-        obj.upset = result_dict['upset']
+        obj.surprise = result_dict['surprise']
         obj.anger = result_dict['anger']
-        obj.hurt = result_dict['hurt']
+        obj.love = result_dict['love']
 
         obj.save()
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
