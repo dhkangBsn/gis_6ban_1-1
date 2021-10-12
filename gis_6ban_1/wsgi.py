@@ -31,6 +31,9 @@ device = torch.device("cpu")
 print(BASE_DIR)
 path_kcbert = os.path.join(BASE_DIR, 'articleapp/kcbert_tokenizer.pth')
 path_epoch20 = os.path.join(BASE_DIR, 'articleapp/epoch20.pth')
+tokenizer = torch.load(path_kcbert, map_location=device)
+model = torch.load(path_epoch20, map_location=device)
+
 class emoClassifer(torch.nn.Module):
     def __init__(self, bert: BertModel, num_class: int, device: torch.device):
         super().__init__()
@@ -85,25 +88,25 @@ def predict(DATA):
     # bertmodel = BertModel.from_pretrained("beomi/kcbert-base")
     # tokenizer = BertTokenizer.from_pretrained("beomi/kcbert-base")
     # bertmodel = torch.load('kcbertmodel.pth', map_location=device)
-    with open(path_kcbert,'rb') as f:
-
-        tokenizer = torch.load(f, map_location=device)
-        with open(path_epoch20,'rb') as f2:
-            model = torch.load(f2, map_location=device)
+    # with open(path_kcbert,'rb') as f:
+    #
+    #     tokenizer = torch.load(f, map_location=device)
+    #     with open(path_epoch20,'rb') as f2:
+    #         model = torch.load(f2, map_location=device)
             ############
             # tokenizer = torch.load(path_kcbert, map_location=device)
             #
             # model = torch.load(path_epoch20, map_location=device)
             # model.eval()
-            X = Build_X(DATA, tokenizer, device)
-            print(X)
-            y_hat = model.predict(X)
-            y_hat = F.softmax(y_hat, dim=1)
+    X = Build_X(DATA, tokenizer, device)
+    print(X)
+    y_hat = model.predict(X)
+    y_hat = F.softmax(y_hat, dim=1)
 
-            np.set_printoptions(precision=3)
-            np.set_printoptions(suppress=True)
-            result = list( map(float, list(y_hat.detach().numpy()[0] * 100)))
-            return result
+    np.set_printoptions(precision=3)
+    np.set_printoptions(suppress=True)
+    result = list( map(float, list(y_hat.detach().numpy()[0] * 100)))
+    return result
 import os
 
 from django.core.wsgi import get_wsgi_application
