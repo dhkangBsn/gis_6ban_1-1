@@ -43,8 +43,7 @@
             {#      제목, 장소, 글쓴이, 작성일자      #}
             <h1 class="NNS_B">{{ target_article.title }}</h1>
         <div class="my-4" style="display: inline">
-                <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}" class="material-icons"
-                style="vertical-align: middle; font-size:1.4rem; color: #f88;">
+                <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}" class="material-icons" style="vertical-align: middle; font-size:1.4rem; color: #f88;">
                     favorite
                 </a>
                 <span style="vertical-align: middle; font-size:1.1rem;">
@@ -76,7 +75,7 @@
         </div>
 
         <h3 class="NNS_B">{{ target_article.place }}</h3>
-        <div id="map" style="width:100%;height:450px; transform: scale(0.9,0.9);"></div>
+        <div id="map" style="width:100%;height:450px;"></div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a0506c93dc9967fe1cbf31894fab580&libraries=services"></script>
         <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
