@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'emotionapp',
     'bootstrap4',
     'imagekit',
-    'emoclassfer_2',
 ]
 
 MIDDLEWARE = [
