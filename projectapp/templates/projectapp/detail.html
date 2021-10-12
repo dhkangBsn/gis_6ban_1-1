@@ -16,18 +16,19 @@
         </div>
 
         <div>
+        {% if comment.writer == user %}
             <a href="{% url 'projectapp:update' pk=target_project.pk %}"
                class="btn btn-success rounded-pill px-5">
-                Update
+                빛다이어리 수정
             </a>
             <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
                class="btn btn-danger rounded-pill px-5">
-                Delete
+                빛다이어리 삭제
             </a>
-
+        {% endif %}
             <a href="{% url 'projectapp:collection' pk=target_project.pk %}"
                class="btn btn-warning rounded-pill px-5 my-2">
-                Diary Collection
+                빛다이어리 책장
             </a>
         </div>
 
@@ -38,12 +39,12 @@
         {% if not subscription %}
         <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
            class="btn btn-primary rounded-pill px-5">
-            Subscribe
+            구독
         </a>
         {% else %}
         <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
            class="btn btn-secondary rounded-pill px-5">
-            Unsubscribe
+            구독 취소
         </a>
         {% endif %}
     </div>

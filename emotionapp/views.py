@@ -40,22 +40,22 @@ class EmotionListView(ListView):
         lat_lon_joy = Article.objects.filter(joy__gt=60).values('lat','lon') # 기쁨
         lat_lon_sadness = Article.objects.filter(sadness__gt=60).values('lat','lon') # 슬픔
         lat_lon_fear = Article.objects.filter(fear__gt=60).values('lat','lon') # 놀람
-        lat_lon_upset = Article.objects.filter(upset__gt=60).values('lat','lon') # 상처
+        lat_lon_surprise = Article.objects.filter(surpise__gt=60).values('lat','lon') # 상처
         lat_lon_anger = Article.objects.filter(anger__gt=60).values('lat','lon') # 분노
-        lat_lon_hurt = Article.objects.filter(hurt__gt=60).values('lat','lon') # 두려움
+        lat_lon_love = Article.objects.filter(love__gt=60).values('lat','lon') # 두려움
 
         lat_lon_1 = lat_lon_joy.union(lat_lon_sadness)
         print(lat_lon_1)
-        lat_lon_2 = lat_lon_fear.union(lat_lon_upset)
+        lat_lon_2 = lat_lon_fear.union(lat_lon_surprise)
         print(lat_lon_2)
-        lat_lon_3 = lat_lon_anger.union(lat_lon_hurt)
+        lat_lon_3 = lat_lon_anger.union(lat_lon_love)
         print(lat_lon_3)
         lat_lon_4 = lat_lon_1.union(lat_lon_2)
 
         lat_lon_5 = lat_lon_4.union(lat_lon_3)
         return super().get_context_data(lat_lon_joy=lat_lon_joy,lat_lon_sadness=lat_lon_sadness,
-                                        lat_lon_fear=lat_lon_fear,lat_lon_upset=lat_lon_upset,
-                                        lat_lon_anger=lat_lon_anger,lat_lon_hurt=lat_lon_hurt,lat_lon=lat_lon_5,
+                                        lat_lon_fear=lat_lon_fear,lat_lon_surprise=lat_lon_surprise,
+                                        lat_lon_anger=lat_lon_anger,lat_lon_love=lat_lon_love,lat_lon=lat_lon_5,
                                         object_name='article',**kwargs)
 
 
@@ -89,8 +89,8 @@ class EmotionDetailView(DetailView):
         if emotion == 'joy':article_list = Article.objects.filter(joy__gt=70) # 기쁨
         elif emotion == 'sadness':article_list = Article.objects.filter(sadness__gt=70) # 슬픔
         elif emotion == 'fear':article_list = Article.objects.filter(fear__gt=70) # 놀람
-        elif emotion == 'upset':article_list = Article.objects.filter(upset__gt=70) # 상처
+        elif emotion == 'surprise':article_list = Article.objects.filter(surpise__gt=70) # 상처
         elif emotion == 'anger':article_list = Article.objects.filter(anger__gt=70) # 분노
-        elif emotion == 'hurt':article_list = Article.objects.filter(hurt__gt=70) # 두려움
+        elif emotion == 'love':article_list = Article.objects.filter(love__gt=70) # 두려움
         lat_lon = article_list.values('lat','lon')
         return super().get_context_data(object_list=article_list,lat_lon=lat_lon,object_name='article',**kwargs)

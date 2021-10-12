@@ -68,9 +68,9 @@
                     <p style="margin: 0.2rem; display: inline;">불안 : {{ target_article.fear }}</p>
                 </div>
                 <div>
-                    <p style="margin: 0.2rem; display: inline;">당항 : {{ target_article.upset }}</p>
+                    <p style="margin: 0.2rem; display: inline;">놀람 : {{ target_article.surprise }}</p>
                     <p style="margin: 0.2rem; display: inline;">분노 : {{ target_article.anger }}</p>
-                    <p style="margin: 0.2rem; display: inline;">상처 : {{ target_article.hurt }}</p>
+                    <p style="margin: 0.2rem; display: inline;">사랑 : {{ target_article.love }}</p>
                 </div>
             </div>
         </div>
@@ -123,11 +123,11 @@
             <div>
                 <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                    class="btn btn-success rounded-pill px-5">
-                    Update
+                    빛고을 수정
                 </a>
                 <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
                    class="btn btn-danger rounded-pill px-5">
-                    Delete
+                    빛고을 삭제
                 </a>
             </div>
             {% endif %}
@@ -156,7 +156,7 @@
                 {% if comment.writer == user %}
                     <div style="text-align: right">
                         <a href="{% url 'commentapp:delete' pk=comment.pk %}"
-                        class="btn btn-danger rounded-pill px-5">Delete</a>
+                        class="btn btn-danger rounded-pill px-5">댓글 삭제</a>
                     </div>
                 {% endif %}
                 </div>

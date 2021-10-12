@@ -60,8 +60,8 @@
 
 
         // 지도를 클릭한 위치에 표출할 마커입니다
-         {# joy, sadness, fear, upset, anger, hurt #}
-        {#  # 기쁨, 슬픔, 불안, 당항, 분노, 상처#}
+        {# joy, sadness, fear, surprise, anger, love #}
+        {#  # 기쁨, 슬픔, 불안, 놀람, 분노, 사랑#}
         {% if target_emotion.emotion == 'joy' %}
         console.log("{% static 'emotion/joy.png' %}");
         var imageSrc = "{% static 'emotion/joy.png' %}", // 마커이미지의 주소입니다
@@ -74,17 +74,17 @@
         console.log("{% static 'emotion/fear.png' %}");
         var imageSrc = "{% static 'emotion/fear.png' %}", // 마커이미지의 주소입니다
         {% endif %}
-        {% if target_emotion.emotion == 'upset' %}
-        console.log("{% static 'emotion/upset.png' %}");
-        var imageSrc = "{% static 'emotion/upset.png' %}", // 마커이미지의 주소입니다
+        {% if target_emotion.emotion == 'surpise' %}
+        console.log("{% static 'emotion/surpise.png' %}");
+        var imageSrc = "{% static 'emotion/surpise.png' %}", // 마커이미지의 주소입니다
         {% endif %}
         {% if target_emotion.emotion == 'anger' %}
         console.log("{% static 'emotion/anger.png' %}");
         var imageSrc = "{% static 'emotion/anger.png' %}", // 마커이미지의 주소입니다
         {% endif %}
-        {% if target_emotion.emotion == 'hurt' %}
-        console.log("{% static 'emotion/hurt.png' %}");
-        var imageSrc = "{% static 'emotion/hurt.png' %}", // 마커이미지의 주소입니다
+        {% if target_emotion.emotion == 'love' %}
+        console.log("{% static 'emotion/love.png' %}");
+        var imageSrc = "{% static 'emotion/love.png' %}", // 마커이미지의 주소입니다
         {% endif %}
         imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
         imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.

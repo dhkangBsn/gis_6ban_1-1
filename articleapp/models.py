@@ -45,9 +45,9 @@ class Article(models.Model):
     joy = models.FloatField(null=True)
     sadness = models.FloatField(null=True)
     fear = models.FloatField(null=True)
-    upset = models.FloatField(null=True)
+    surpise = models.FloatField(null=True)
     anger = models.FloatField(null=True)
-    hurt = models.FloatField(null=True)
+    love = models.FloatField(null=True)
 
     # 위도, 경도
     lat = models.FloatField(null=False)
