@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div class="text-center mw-500 m-auto">
+        <div class="m-5">
+           <h4>
+               Delete Project : {{ target_project.title }}
+           </h4>
+        </div>
+        <div>
+            <form action="{% url 'projectapp:delete' pk=target_project.pk %}"
+                  method="post">
+                {% csrf_token %} <!--사이트간 해킹방지 우회-->
+                <div class="m-5">
+                <input type="submit"
+                       class="btn btn-danger rounded-pill px-5">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

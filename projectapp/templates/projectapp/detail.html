@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="map" style="width:100%;height:600px; transform: scale(0.9,0.9);"></div>
+    <div class="text-center mw-500 m-auto">
+
+        <div class="m-5">
+                <img src="{{ target_project.image.url }}"
+                     class="profile_image m-4"
+                     alt="profile image">
+                <h2 class="NNS_B">
+                    {{ target_project.name }}
+                </h2>
+                <h5>{{ target_project.description }}</h5>
+        </div>
+
+        <div>
+            <a href="{% url 'projectapp:update' pk=target_project.pk %}"
+               class="btn btn-success rounded-pill px-5">
+                Update
+            </a>
+            <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
+               class="btn btn-danger rounded-pill px-5">
+                Delete
+            </a>
+
+            <a href="{% url 'projectapp:collection' pk=target_project.pk %}"
+               class="btn btn-warning rounded-pill px-5 my-2">
+                Diary Collection
+            </a>
+        </div>
+
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="text-center">
+        {% if not subscription %}
+        <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
+           class="btn btn-primary rounded-pill px-5">
+            Subscribe
+        </a>
+        {% else %}
+        <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
+           class="btn btn-secondary rounded-pill px-5">
+            Unsubscribe
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <div>
+        {% include 'snippets/list_fragment.html' with object_list=object_list %}
+    </div>
+
+
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a0506c93dc9967fe1cbf31894fab580&libraries=services"></script>
+    <script>
+    var mapContainer = document.getElementById('map{{forloop.counter}}'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(35, 127), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    {% for data in lat_lon %}
+        console.log({{ data.lat }})
+
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+        map.setCenter(new kakao.maps.LatLng({{ data.lat }}, {{ data.lon }}));
+
+        // 지도를 클릭한 위치에 표출할 마커입니다
+        var marker = new kakao.maps.Marker({
+            // 지도 중심좌표에 마커를 생성합니다
+            position: map.getCenter()
+        });
+        // 지도에 마커를 표시합니다
+        marker.setMap(map);
+
+    {% endfor %}
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="map" style="width:100%;height:600px; transform: scale(0.9,0.9);"></div>
+    <div class="text-center mw-500">
+        <div>
+            <img src="{{ target_emotion.image.url }}"
+                 class="profile_image"
+                 alt="profile image">
+            <h2 class="NNS_B">
+                {{ target_emotion.title }}
+            </h2>
+            <h5>{{ target_emotion.description }}</h5>
+        </div>
+{#        {% if target_emotion.writer == user %}#}
+{#                <div>#}
+{#                    <a href="{% url 'emotionapp:update' pk=target_emotion.pk %}"#}
+{#                       class="btn btn-success rounded-pill px-5">#}
+{#                        Update#}
+{#                    </a>#}
+{#                    <a href="{% url 'emotionapp:delete' pk=target_emotion.pk %}"#}
+{#                       class="btn btn-danger rounded-pill px-5">#}
+{#                        Delete#}
+{#                    </a>#}
+{#                </div>#}
+{#        {% endif %}#}
+    </div>
+
+    <div>
+        {% include 'snippets/list_fragment.html' with object_list=object_list %}
+    </div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a0506c93dc9967fe1cbf31894fab580&libraries=services"></script>
+    <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(35, 127), // 지도의 중심좌표
+                level: 7 // 지도의 확대 레벨
+            };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var lat = []
+    var lon = []
+    function average(array) {
+        return array.reduce((sum, current) => sum + current, 0) / array.length;
+    }
+    var emotion = "{{target_emotion.emotion}}"
+
+    {% for data in lat_lon %}
+        console.log({{ data.lat }})
+
+        lat[{{ forloop.counter }}-1] = {{ data.lat }};
+
+        lon[{{ forloop.counter }}-1] = {{ data.lon }};
+
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+
+        // 지도를 클릭한 위치에 표출할 마커입니다
+         {# joy, sadness, fear, upset, anger, hurt #}
+        {#  # 기쁨, 슬픔, 불안, 당항, 분노, 상처#}
+        {% if target_emotion.emotion == 'joy' %}
+        console.log("{% static 'emotion/joy.png' %}");
+        var imageSrc = "{% static 'emotion/joy.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        {% if target_emotion.emotion == 'sadness' %}
+        console.log("{% static 'emotion/sadness.png' %}");
+        var imageSrc = "{% static 'emotion/sadness.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        {% if target_emotion.emotion == 'fear' %}
+        console.log("{% static 'emotion/fear.png' %}");
+        var imageSrc = "{% static 'emotion/fear.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        {% if target_emotion.emotion == 'upset' %}
+        console.log("{% static 'emotion/upset.png' %}");
+        var imageSrc = "{% static 'emotion/upset.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        {% if target_emotion.emotion == 'anger' %}
+        console.log("{% static 'emotion/anger.png' %}");
+        var imageSrc = "{% static 'emotion/anger.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        {% if target_emotion.emotion == 'hurt' %}
+        console.log("{% static 'emotion/hurt.png' %}");
+        var imageSrc = "{% static 'emotion/hurt.png' %}", // 마커이미지의 주소입니다
+        {% endif %}
+        imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+        markerPosition = new kakao.maps.LatLng({{ data.lat }}, {{ data.lon }});
+        var marker = new kakao.maps.Marker({
+            // 지도 중심좌표에 마커를 생성합니다
+            position: markerPosition,
+            image: markerImage // 마커이미지 설정
+        });
+        // 지도에 마커를 표시합니다
+        marker.setMap(map);
+
+    {% endfor %}
+    console.log('lat', lat, average(lat))
+    console.log('lon', lon, average(lon))
+    map.setCenter(new kakao.maps.LatLng(average(lat), average(lon)));
+    </script>
+
+{% endblock %}

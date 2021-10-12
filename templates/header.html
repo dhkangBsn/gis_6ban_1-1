@@ -1,0 +1,71 @@
+<div class="div_border">
+    <div class="pragmatic_header_logo">
+        <h1 class="title_font">
+            <a href="{% url 'home' %}">
+                빛고을나우
+            </a>
+        </h1>
+    </div>
+
+{#    <div class="pragmatic_header_logo">#}
+{#        <h1 style="display: inline-block; font-size: 3rem;">#}
+{#            <a href="{% url 'home' %}">#}
+{#                감성여행기#}
+{#            </a>#}
+{#        </h1>#}
+{#    </div>#}
+
+
+    {% if not user.is_authenticated %}
+        <div style="position:relative; left: 1rem">
+            <a href="{% url 'accountapp:login' %}" class="hover_white">
+                로그인
+            </a>
+
+            <a href="{% url 'accountapp:create' %}" class="hover_white">
+                회원가입
+            </a>
+        </div>
+    {% else %}
+            <a href="{% url 'articleapp:create' %}" class="hover_white">
+        여행기 작성
+        </a>
+
+        <a href="{% url 'accountapp:logout' %}" class="hover_white">
+            로그아웃
+        </a>
+
+    {% endif %}
+
+
+
+    <div class="header-font">
+        <span class="mx-2">
+                <a href="{% url 'articleapp:list' %}">
+                빛고을나우
+            </a>
+        </span>
+        <span class="mx-2">
+            <a href="{% url 'projectapp:list' %}">
+                빛다이어리
+            </a>
+        </span>
+        <span class="mx-2">
+            <a href="{% url 'emotionapp:list' %}">
+                우리의감성
+            </a>
+        </span>
+
+        {% if user.is_authenticated %}
+        <span class="mx-2">
+            <a href="{% url 'subscribeapp:list' %}">
+                구독목록
+            </a>
+        </span>
+        {% endif %}
+
+    </div>
+</div>
+
+
+
