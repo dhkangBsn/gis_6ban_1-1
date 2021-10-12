@@ -92,18 +92,6 @@ class ArticleCreateView(CreateView):
         print(result_dict)
         print(type(result_dict['sadness']))
 
-        ####################
-
-        # emotion = emotion_analyzer.predict(transrated_content)
-        # obj.others = emotion.probas['others']
-        # obj.joy = emotion.probas['joy']
-        # obj.surprise = emotion.probas['surprise']
-        # obj.disgust = emotion.probas['disgust']
-        # obj.anger = emotion.probas['anger']
-        # obj.sadness = emotion.probas['sadness']
-        # obj.fear = emotion.probas['fear']
-
-
         obj.joy = result_dict['joy']
         obj.sadness = result_dict['sadness']
         obj.fear = result_dict['fear']
@@ -113,37 +101,6 @@ class ArticleCreateView(CreateView):
 
         obj.save()
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
-#
-#
-#
-# @method_decorator(login_required, 'get')
-# @method_decorator(login_required, 'post')
-# class ArticleCreateView(CreateView):
-#     model = Article
-#     form_class = ArticleCreationForm
-#     # success_url = reverse_lazy('articleapp:list')
-#     template_name = 'articleapp/create.html'
-#
-#     def form_valid(self, form):
-#         form.instance.writer = self.request.user  # Foreign Key 지정하여 삽입하기 위한 코드
-#         return super().form_valid(form)
-#
-#     def get_success_url(self):  # self.object는 target_object와 동일하다고 보면 됨
-#         obj = Article.objects.get(pk=self.object.id)
-#
-#         result=predict(obj.content)
-#
-#         result_dict = {'joy':result[0], 'sadness':result[1], 'fear':result[2], 'upset':result[3], 'anger':result[4], 'hurt':result[5]}
-#
-#         obj.joy = result_dict['joy']
-#         obj.sadness = result_dict['sadness']
-#         obj.fear = result_dict['fear']
-#         obj.upset = result_dict['upset']
-#         obj.anger = result_dict['anger']
-#         obj.hurt = result_dict['hurt']
-#
-#         obj.save()
-#         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
 class ArticleDetailView(DetailView, FormMixin):
